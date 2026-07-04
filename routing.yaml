@@ -1,0 +1,46 @@
+version: 1
+skill: prd-keeper-bootstrap
+summary: 通用 PRD-first 可审计 AI 研发闭环初始化与升级入口。
+sources:
+  init_script: scripts/init_prd_keeper.py
+  templates: templates/
+  project_skill_template: templates/.agent/skills/prd-keeper/
+  prd_template: templates/docs/prd/
+routes:
+  init_project:
+    triggers:
+      - 初始化 PRD-first 项目
+      - 一键初始化
+      - install prd keeper
+      - bootstrap prd keeper
+      - new project governance
+      - 生成 AI 研发闭环
+    read:
+      - README.md
+      - scripts/init_prd_keeper.py
+      - templates/AGENTS.md.tpl
+      - templates/.agent/skills/prd-keeper/SKILL.md.tpl
+      - templates/docs/prd/README.md.tpl
+  explain_model:
+    triggers:
+      - 解释 PRD-first
+      - 可审计 AI 研发闭环
+      - 研发模式
+      - standard development mode
+    read:
+      - README.md
+      - templates/.agent/skills/prd-keeper/rules/agent-behavior.md.tpl
+      - templates/.agent/skills/prd-keeper/rules/prd-governance.md.tpl
+  upgrade_project:
+    triggers:
+      - upgrade prd keeper
+      - 升级 prd keeper
+      - 迁移旧项目
+      - 同步模板
+    read:
+      - README.md
+      - scripts/init_prd_keeper.py
+      - templates/
+notes:
+  - Bootstrap 生成项目内 prd-keeper 后，日常开发治理由目标项目内 prd-keeper 接管。
+  - 对已有项目默认不覆盖文件；覆盖必须显式传入 --force 或获得用户明确许可。
