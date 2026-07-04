@@ -1,3 +1,4 @@
 _smoke/
 __pycache__/
 *.pyc
+.serena/
