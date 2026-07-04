@@ -4,7 +4,7 @@ AI 在进行非平凡代码变更前必须先使用 `$prd-keeper`，阅读本文
 
 ## 项目一句话说明
 
-`prd-keeper-bootstrap` 是一个离线、确定性的 PRD-first AI 研发治理初始化器，用 Python 标准库脚本把统一 Agent 入口、项目本地 `prd-keeper` Skill、分层 PRD、PRD 日志和校验脚本安装到目标项目中。
+`prd-keeper-bootstrap` 是一个离线、确定性的 PRD-first AI 研发治理初始化器，通过 npm 命令包装器或 Python 标准库脚本，把统一 Agent 入口、项目本地 `prd-keeper` Skill、分层 PRD、PRD 日志和校验脚本安装到目标项目中。
 
 ## 既有项目渐进式治理接管
 
@@ -25,8 +25,12 @@ AI 在进行非平凡代码变更前必须先使用 `$prd-keeper`，阅读本文
 
 ## 主流程入口
 
-- 应用入口：`scripts/init_prd_keeper.py` 命令行脚本。
-- 安装命令：`python scripts/init_prd_keeper.py --target <target-project> --project-name <project-name> [--force]`。
+- npm 命令入口：`prd-keeper init --target <target-project> --project-name <project-name> [--force]`。
+- npx 命令入口：`npx prd-keeper-bootstrap init --target <target-project> --project-name <project-name> [--force]`。
+- Python 源码入口：`python scripts/init_prd_keeper.py --target <target-project> --project-name <project-name> [--force]`。
+- GitHub 源码入口：`https://github.com/dumpling233/prd-keeper-bootstrap`。
+- npm 包装器入口：`bin/prd-keeper.js`，负责解析 `init`、`--help`、`--version`，定位 Python >= 3.9 并转发到 `scripts/init_prd_keeper.py`。
+- GitHub/npm 展示入口：根目录 `README.md` 和 `assets/prd-keeper-logo.svg`，面向外部使用者展示品牌、安装入口、能力边界和使用说明。
 - 本项目作为 Codex Skill 的入口：根目录 `SKILL.md`。
 - 生成到目标项目的治理入口：`AGENTS.md`、`CODEX.md`、`CLAUDE.md` 和 `.agent/skills/prd-keeper/SKILL.md`。
 - 后端入口：不适用；本项目不是后端服务。
@@ -56,5 +60,4 @@ AI 在进行非平凡代码变更前必须先使用 `$prd-keeper`，阅读本文
 以下事项会在后续受控任务中逐步确认。不要根据模板、目录名或项目名编造；优先消除本次任务相关范围内影响判断和实现的未知项。
 
 - 是否继续同时维护 `AGENTS.md`、`CODEX.md` 和 `CLAUDE.md` 三个入口，还是按目标用户群收敛入口文件。
-- README 末尾的 MIT 建议与仓库实际 GPL-3.0 `LICENSE` 是否需要统一。
 - Roadmap 中 `scan`、`upgrade`、`--dry-run`、配置化初始化和 CI 校验的优先级。

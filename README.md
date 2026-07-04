@@ -1,16 +1,39 @@
-# PRD Keeper Bootstrap
+<p align="center">
+  <img src="assets/prd-keeper-logo.svg" alt="PRD Keeper Bootstrap" width="620">
+</p>
 
-**PRD Keeper Bootstrap** 是一个用于初始化 **PRD-first 可审计 AI 辅助研发闭环** 的项目治理脚手架。
+<p align="center">
+  <strong>一键初始化 PRD-first 可审计 AI 辅助研发闭环</strong><br>
+  <sub>为任意项目安装 Agent 入口、项目本地 Skill、分层 PRD、PRD 日志和校验脚本。</sub>
+</p>
 
-它的核心职责不是生成业务代码，而是把一套项目级 AI 研发治理结构安装到目标目录中，使项目具备统一的 Agent 入口、项目本地 Skill、分层 PRD、变更日志和校验脚本。
+<p align="center">
+  <a href="https://www.npmjs.com/package/prd-keeper-bootstrap"><img alt="npm version" src="https://img.shields.io/npm/v/prd-keeper-bootstrap.svg?style=flat-square&color=2563eb"></a>
+  <a href="https://www.npmjs.com/package/prd-keeper-bootstrap"><img alt="npm downloads" src="https://img.shields.io/npm/dw/prd-keeper-bootstrap?style=flat-square&color=cb3837&label=downloads"></a>
+  <img alt="node version" src="https://img.shields.io/badge/node-%3E%3D18-339933?style=flat-square&logo=node.js&logoColor=white">
+  <img alt="python version" src="https://img.shields.io/badge/python-%3E%3D3.9-3776ab?style=flat-square&logo=python&logoColor=white">
+  <img alt="license" src="https://img.shields.io/badge/license-GPL--3.0--only-16a34a?style=flat-square">
+</p>
 
-一句话定义：
+<p align="center">
+  <a href="#快速开始">快速开始</a>
+  · <a href="#它解决什么问题">它解决什么问题</a>
+  · <a href="#生成内容">生成内容</a>
+  · <a href="#常见疑问">常见疑问</a>
+  · <a href="#license">License</a>
+</p>
+
+<p align="center">
+  <code>prd-keeper init</code> 安装的是项目级 AI 研发治理环境，不是业务代码模板。
+</p>
+
+## 一句话理解
+
+**PRD Keeper Bootstrap** 是一个用于初始化 **PRD-first 可审计 AI 辅助研发闭环** 的项目治理脚手架。它的核心职责不是生成业务代码，而是把一套项目级 AI 研发治理结构安装到目标目录中，使项目具备统一的 Agent 入口、项目本地 Skill、分层 PRD、变更日志和校验脚本。
 
 > **PRD Keeper Bootstrap 是面向 AI 辅助软件研发的项目级治理初始化工具，用于把任意目标项目初始化为 PRD-first、可追溯、可审计的 AI 研发工作区。**
 
-初始化完成后的目标项目可以称为：
-
-> **PRD Keeper Workspace**，即一个被 PRD Keeper 治理规则接管的项目工作区。
+初始化完成后的目标项目可以称为 **PRD Keeper Workspace**，即一个被 PRD Keeper 治理规则接管的项目工作区。
 
 ---
 
@@ -37,6 +60,8 @@
 当前版本提供的是一个统一的 `init` 能力：
 
 > **init = 在目标项目中安装 PRD Keeper 治理环境。**
+
+`init` 可以通过 npm 安装后的 `prd-keeper` 命令执行，也可以直接运行仓库内的 Python 脚本执行。npm 入口只负责分发和命令注册，实际初始化逻辑仍复用同一份 `scripts/init_prd_keeper.py`。
 
 这里的“初始化”指的是初始化治理环境，而不是只能初始化一个空白新项目。
 
@@ -139,18 +164,52 @@ your-project/
 
 ## 快速开始
 
-### 1. 获取工具
+### 1. 前置要求
+
+- Node.js >= 18：用于通过 npm 安装和运行 `prd-keeper` 命令。
+- Python >= 3.9：当前初始化器仍由 Python 标准库脚本执行。
+- Git 可选：用于读取目标项目的 `user.name` 或 `user.email`，生成按作者拆分的 PRD 日志文件名。
+
+### 2. 获取工具
+
+推荐通过 npm 安装：
 
 ```bash
-git clone https://github.com/your-name/prd-keeper-bootstrap.git
+npm install -g prd-keeper-bootstrap
+```
+
+也可以不全局安装，直接通过 npx 使用：
+
+```bash
+npx prd-keeper-bootstrap init --target /path/to/your-project --project-name your-project
+```
+
+也可以从源码使用：
+
+```bash
+git clone https://github.com/dumpling233/prd-keeper-bootstrap.git
 cd prd-keeper-bootstrap
 ```
 
 如果你还没有创建 GitHub 仓库，也可以先在本地直接使用当前目录中的脚本。
 
-### 2. 初始化治理环境
+### 3. 初始化治理环境
 
 目标目录可以是新项目，也可以是已有项目：
+
+使用 npm 全局命令：
+
+```bash
+prd-keeper init --target /path/to/your-project --project-name your-project
+```
+
+使用 npx：
+
+```bash
+npx prd-keeper-bootstrap init --target /path/to/your-project --project-name your-project
+```
+
+使用源码脚本：
 
 ```bash
 python scripts/init_prd_keeper.py --target /path/to/your-project --project-name your-project
@@ -159,7 +218,7 @@ python scripts/init_prd_keeper.py --target /path/to/your-project --project-name 
 Windows 示例：
 
 ```powershell
-python D:\work\prd-keeper-bootstrap\scripts\init_prd_keeper.py --target D:\work\your-project --project-name your-project
+prd-keeper init --target D:\work\your-project --project-name your-project
 ```
 
 参数说明：
@@ -175,10 +234,16 @@ python D:\work\prd-keeper-bootstrap\scripts\init_prd_keeper.py --target D:\work\
 如果确认需要覆盖模板文件，可以使用：
 
 ```bash
+prd-keeper init --target /path/to/your-project --project-name your-project --force
+```
+
+源码方式则使用：
+
+```bash
 python scripts/init_prd_keeper.py --target /path/to/your-project --project-name your-project --force
 ```
 
-### 3. 在目标项目中执行校验
+### 4. 在目标项目中执行校验
 
 ```bash
 python .agent/skills/prd-keeper/scripts/check_prd_keeper.py
@@ -190,13 +255,13 @@ python .agent/skills/prd-keeper/scripts/check_prd_keeper.py
 prd-keeper validation passed
 ```
 
-### 4. 创建一次 PRD 变更日志
+### 5. 创建一次 PRD 变更日志
 
 ```bash
 python .agent/skills/prd-keeper/scripts/new_prd_log.py --title "新增用户登录能力"
 ```
 
-### 5. 日常使用：继续正常提需求
+### 6. 日常使用：继续正常提需求
 
 初始化完成后，用户不需要每次手动复述完整治理流程。日常可以继续像以前一样提出开发需求，例如：
 
@@ -373,24 +438,6 @@ PRD Keeper Bootstrap 不是某个单一标准的直接实现，而是面向 AI �
 
 ---
 
-## Roadmap
-
-计划中的能力包括：
-
-- `--dry-run`：预览初始化内容，不实际写入文件
-- `scan`：静态扫描目标项目，生成项目清单、技术栈线索和 Baseline PRD 回填清单
-- `upgrade`：升级已有 PRD Keeper Workspace 的治理模板，尽量避免覆盖本地定制
-- `prd-keeper.config.yaml`：支持配置化初始化
-- 技术栈模板：例如 Go + Vue、Node + React、Python + FastAPI
-- GitHub Actions：在 CI 中校验 PRD Keeper 结构和日志规则
-- PRD 日志索引：自动生成变更日志索引
-- 全局 Skill 安装模式：将 Bootstrap 能力沉淀为可复用 Agent Skill
-- 团队规则扩展：支持组织级治理规范叠加到项目本地规则
-
-后续如果 `scan` 能力与初始化能力形成明显差异，可以再进一步演进为更完整的既有项目接入流程。但当前版本保持统一 `init` 更准确，也更容易理解。
-
----
-
 ## Slogan
 
 ```text
@@ -407,4 +454,4 @@ Bootstrap auditable PRD-first AI-assisted software development.
 
 ## License
 
-建议使用 MIT License，方便个人和团队自由使用、修改和扩展。
+本项目使用 GPL-3.0 License，详见 [LICENSE](LICENSE)。

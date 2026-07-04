@@ -1,0 +1,44 @@
+{
+  "name": "prd-keeper-bootstrap",
+  "version": "0.1.1",
+  "description": "Bootstrap auditable PRD-first AI-assisted software development.",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dumpling233/prd-keeper-bootstrap.git"
+  },
+  "homepage": "https://github.com/dumpling233/prd-keeper-bootstrap#readme",
+  "bugs": {
+    "url": "https://github.com/dumpling233/prd-keeper-bootstrap/issues"
+  },
+  "bin": {
+    "prd-keeper": "bin/prd-keeper.js",
+    "prd-keeper-bootstrap": "bin/prd-keeper.js"
+  },
+  "files": [
+    "bin/",
+    "assets/",
+    "scripts/",
+    "templates/",
+    "README.md",
+    "LICENSE",
+    "SKILL.md",
+    "routing.yaml"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "cli:help": "node ./bin/prd-keeper.js --help",
+    "pack:check": "npm pack --dry-run"
+  },
+  "keywords": [
+    "prd",
+    "ai",
+    "agent",
+    "governance",
+    "codex",
+    "bootstrap"
+  ],
+  "license": "GPL-3.0-only"
+}

@@ -8,11 +8,14 @@
 
 - 项目名称：`prd-keeper-bootstrap`
 - 项目路径：`D:\self-work\prd-keeper-bootstrap`
-- 技术栈：Python 标准库脚本、Markdown/YAML 模板、Git 本地配置。
+- 技术栈：Node.js npm 命令包装器、Python 标准库脚本、Markdown/YAML 模板、Git 本地配置。
 - 业务领域：PRD-first 可审计 AI 辅助软件研发治理初始化。
 
 ## 已确认结构
 
+- `package.json`：npm 包元数据，当前本地版本为 `0.1.1`，声明 `prd-keeper` 与 `prd-keeper-bootstrap` bin 命令、Node.js 版本要求、GitHub repository/homepage/bugs、发布文件集合和许可证。
+- `assets/prd-keeper-logo.svg`：GitHub/npm README 顶部展示 logo，纳入 npm 发布文件集合。
+- `bin/prd-keeper.js`：npm 命令包装器，解析 `init`、`--help`、`--version`，探测 Python >= 3.9 后转发到 `scripts/init_prd_keeper.py`。
 - `scripts/init_prd_keeper.py`：离线初始化脚本，负责复制模板、渲染变量、跳过或覆盖目标文件、创建 PRD 初始化日志。
 - `templates/`：目标项目治理结构模板。
 - `SKILL.md`：当前仓库作为 bootstrap Skill 的入口。
@@ -23,10 +26,10 @@
 
 ## 待确认结构
 
-- 构建命令：当前无构建步骤。
-- 测试命令：当前无独立测试套件；治理结构校验命令为 `python .agent\skills\prd-keeper\scripts\check_prd_keeper.py`。
+- 构建命令：当前无构建步骤；发布前可运行 `npm run pack:check` 预览 npm 包内容。
+- 测试命令：当前无独立测试套件；npm CLI 帮助命令为 `npm run cli:help`，治理结构校验命令为 `python .agent\skills\prd-keeper\scripts\check_prd_keeper.py`。
 - 配置目录：当前无独立配置目录。
-- 部署方式：当前作为 Git 仓库或本地目录使用。
+- 部署方式：当前可作为 npm 包、Git 仓库或本地目录使用。
 
 ## 当前 PRD 文件
 

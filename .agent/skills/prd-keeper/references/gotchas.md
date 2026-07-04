@@ -5,7 +5,9 @@
 ## 当前坑点
 
 - Windows 环境中 `python` 可能先命中 WindowsApps 占位入口；如果出现“指定的登录会话不存在”或无法启动，应确认真实 Python 路径是否排在 PATH 前面，或直接调用真实解释器。
-- 仓库 README 的许可证说明和根 `LICENSE` 文件必须保持一致；当前需要确认 MIT 建议与 GPL-3.0 实际文件之间的最终口径。
+- 仓库 README、根 `LICENSE` 和 `package.json` 的许可证说明必须保持一致。
+- GitHub 首页 README 面向外部使用者；不要把内部 Roadmap、发布账号/scope、治理待确认事项或一次性任务过程写入 README，应放入 `docs/prd/` 或 PRD 日志。
+- npm 包正式发布前需要确认包名是否可用；如果未加 scope 的包名已被占用，应改为维护者拥有的 scoped package。
 - 不要从项目名推断产品模块。
 - 不要把默认 README 模板当作产品需求。
 - 没有代码或用户明确要求时，不要编造 API 契约、数据结构、权限或外部服务。
